@@ -43,17 +43,6 @@ class DetectSign():
             # subscribes raw image
             self.sub_image_original = rospy.Subscriber('/detect/image_input', Image, self.cbFindTrafficSign, queue_size = 1)
 
-        # 이미지 전처리 시작
-        # 1. Gaussian Blur 적용
-        cv_image_input = cv2.GaussianBlur(cv_image_input, (5, 5), 0)
-
-        # 2. Histogram Equalization 적용
-        # YUV 색공간으로 변환
-        yuv = cv2.cvtColor(cv_image_input, cv2.COLOR_BGR2YUV)
-        # Y 채널(명도)에만 equalization 적용
-        yuv[:,:,0] = cv2.equalizeHist(yuv[:,:,0])
-        # 다시 BGR 색공간으로 변환
-        cv_image_input = cv2.cvtColor(yuv, cv2.COLOR_YUV2BGR)
         # publishes
         self.pub_traffic_sign = rospy.Publisher('/detect/traffic_sign', UInt8, queue_size=1)
 
@@ -107,6 +96,18 @@ class DetectSign():
         elif self.sub_image_type == "raw":
             cv_image_input = self.cvBridge.imgmsg_to_cv2(image_msg, "bgr8")
 
+        # 이미지 전처리 시작
+        # 1. Gaussian Blur 적용
+        cv_image_input = cv2.GaussianBlur(cv_image_input, (5, 5), 0)
+
+        # 2. Histogram Equalization 적용
+        # YUV 색공간으로 변환
+        yuv = cv2.cvtColor(cv_image_input, cv2.COLOR_BGR2YUV)
+        # Y 채널(명도)에만 equalization 적용
+        yuv[:,:,0] = cv2.equalizeHist(yuv[:,:,0])
+        # 다시 BGR 색공간으로 변환
+        cv_image_input = cv2.cvtColor(yuv, cv2.COLOR_YUV2BGR)
+        
         MIN_MATCH_COUNT = 9
         MIN_MSE_DECISION = 50000
 
