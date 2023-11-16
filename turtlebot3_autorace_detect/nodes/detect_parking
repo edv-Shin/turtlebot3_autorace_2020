@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-################################################################################
 # Copyright 2018 ROBOTIS CO., LTD.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-################################################################################
 
 # Author: Leon Jung, Gilbert, Ashe Kim
  
@@ -60,7 +58,7 @@ class DetectParking():
 
             rospy.loginfo("go straight")
             msg_moving = MovingParam()
-            msg_moving.moving_type= 4
+            msg_moving.moving_type= 1
             msg_moving.moving_value_angular=0.0
             msg_moving.moving_value_linear=0.45
             self.pub_moving.publish(msg_moving)
@@ -102,189 +100,97 @@ class DetectParking():
                 if self.is_obstacle_detected_L == True or self.is_obstacle_detected_R == True:
                     break
             
-            if self.is_obstacle_detected_R == False:
-                rospy.loginfo("right parking is clear")
-                rospy.loginfo("go right")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=3
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.loginfo("right parking is clear")
+            rospy.loginfo("go right")
+            msg_moving = MovingParam()
+            msg_moving.moving_type=3
+            msg_moving.moving_value_angular=90
+            msg_moving.moving_value_linear=0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.sleep(1)
+            rospy.sleep(1)
 
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.20
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type= 4
+            msg_moving.moving_value_angular=0.0
+            msg_moving.moving_value_linear=0.20
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.sleep(1)
-                
-                rospy.loginfo("go back straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 5
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.20
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-
-                rospy.loginfo("go right")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 3
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.9
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-
-                rospy.loginfo("go left")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=2
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)   
-
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.2
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)       
+            rospy.sleep(1)
             
-            elif self.is_obstacle_detected_L == False:
-                rospy.loginfo("left parking is clear")
-                rospy.loginfo("go left")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=2
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.loginfo("go back straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type= 5
+            msg_moving.moving_value_angular=0.0
+            msg_moving.moving_value_linear=0.20
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.sleep(1)
+            rospy.sleep(1)
 
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.20
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.loginfo("go right")
+            msg_moving = MovingParam()
+            msg_moving.moving_type= 3
+            msg_moving.moving_value_angular=90
+            msg_moving.moving_value_linear=0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.sleep(1)
-                
-                rospy.loginfo("go back straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 5
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.20
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.sleep(1)
 
-                rospy.sleep(1)
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type= 4
+            msg_moving.moving_value_angular=0.0
+            msg_moving.moving_value_linear=0.9
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.loginfo("go left")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 2
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.sleep(1)
 
-                rospy.sleep(1)
+            rospy.loginfo("go left")
+            msg_moving = MovingParam()
+            msg_moving.moving_type=2
+            msg_moving.moving_value_angular=90
+            msg_moving.moving_value_linear=0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type= 4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=1.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.sleep(1)   
 
-                rospy.sleep(1)
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type=4
+            msg_moving.moving_value_angular=0.0
+            msg_moving.moving_value_linear=0.2
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-                rospy.loginfo("go left")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=2
-                msg_moving.moving_value_angular=90
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-
-                rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=4
-                msg_moving.moving_value_angular=0.0
-                msg_moving.moving_value_linear=0.2
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
+            rospy.sleep(1)       
 
             rospy.loginfo("parking finished")
             msg_pub_parking_return.data = self.StepOfParking.exit.value
@@ -308,17 +214,91 @@ class DetectParking():
         threshold_distance = 0.5
 
         if self.start_obstacle_detection == True:
-            for i in range(scan_start_left, scan_end_left):
-                if scan.ranges[i] < threshold_distance and scan.ranges[i] > 0.01:
-                    self.is_obstacle_detected_L = True
-                    rospy.loginfo("left detected")
-            
+            # 항상 오른쪽으로 주차하도록 수정
+            rospy.loginfo("right parking is clear")
+            rospy.loginfo("go right")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 3
+            msg_moving.moving_value_angular = 90
+            msg_moving.moving_value_linear = 0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
 
-            for i in range(scan_start_right, scan_end_right):
-                if scan.ranges[i] < threshold_distance and scan.ranges[i] > 0.01:
-                    self.is_obstacle_detected_R = True
-                    rospy.loginfo("right detected")
-            self.start_obstacle_detection = False
+            rospy.sleep(1)
+
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 4
+            msg_moving.moving_value_angular = 0.0
+            msg_moving.moving_value_linear = 1.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
+
+            rospy.sleep(1)
+
+            rospy.loginfo("go right")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 3
+            msg_moving.moving_value_angular = 90
+            msg_moving.moving_value_linear = 0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
+
+            rospy.sleep(1)
+
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 4
+            msg_moving.moving_value_angular = 0.0
+            msg_moving.moving_value_linear = 0.9
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
+
+            rospy.sleep(1)
+
+            rospy.loginfo("go right")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 3
+            msg_moving.moving_value_angular = 90
+            msg_moving.moving_value_linear = 0.0
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
+
+            rospy.sleep(1)
+
+            rospy.loginfo("go straight")
+            msg_moving = MovingParam()
+            msg_moving.moving_type = 4
+            msg_moving.moving_value_angular = 0.0
+            msg_moving.moving_value_linear = 0.2
+            self.pub_moving.publish(msg_moving)
+            while True:
+                if self.is_moving_complete == True:
+                    break
+            self.is_moving_complete = False
+
+            rospy.sleep(1)
+
+        rospy.loginfo("parking finished")
+        msg_pub_parking_return = UInt8()
+        msg_pub_parking_return.data = self.StepOfParking.exit.value
+        self.pub_parking_return.publish(msg_pub_parking_return)
+        rospy.sleep(3)
 
     def main(self):
         rospy.spin()
