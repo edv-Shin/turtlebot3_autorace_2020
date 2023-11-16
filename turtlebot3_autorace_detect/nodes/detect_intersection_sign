@@ -101,7 +101,9 @@ class DetectSign():
         elif self.sub_image_type == "raw":
             cv_image_input = self.cvBridge.imgmsg_to_cv2(image_msg, "bgr8")
 
-        MIN_MATCH_COUNT = 9 #9
+        MIN_MATCH_COUNT_INTERSECTION = 4 #9
+        MIN_MATCH_COUNT_LEFT = 6
+        MIN_MATCH_COUNT_RIGHT = 6
         MIN_MSE_DECISION = 50000
 
         # find the keypoints and descriptors with SIFT
@@ -117,7 +119,7 @@ class DetectSign():
         for m,n in matches_intersection:
             if m.distance < 0.7*n.distance:
                 good_intersection.append(m)
-        if len(good_intersection)>MIN_MATCH_COUNT:
+        if len(good_intersection)>MIN_MATCH_COUNT_INTERSECTION:
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good_intersection ]).reshape(-1,1,2)
             dst_pts = np.float32([self.kp_intersection[m.trainIdx].pt for m in good_intersection]).reshape(-1,1,2)
 
@@ -137,7 +139,7 @@ class DetectSign():
         for m,n in matches_left:
             if m.distance < 0.7*n.distance:
                 good_left.append(m)
-        if len(good_left)>MIN_MATCH_COUNT:
+        if len(good_left)>MIN_MATCH_COUNT_LEFT:
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good_left ]).reshape(-1,1,2)
             dst_pts = np.float32([self.kp_left[m.trainIdx].pt for m in good_left]).reshape(-1,1,2)
 
@@ -161,7 +163,7 @@ class DetectSign():
         for m,n in matches_right:
             if m.distance < 0.7*n.distance:
                 good_right.append(m)
-        if len(good_right)>MIN_MATCH_COUNT:
+        if len(good_right)>MIN_MATCH_COUNT_RIGHT:
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good_right ]).reshape(-1,1,2)
             dst_pts = np.float32([self.kp_right[m.trainIdx].pt for m in good_right]).reshape(-1,1,2)
 
