@@ -58,15 +58,8 @@ class DetectSign():
         self.counter = 1
 
     def fnPreproc(self):
-        # SIFT 파라미터 조정
-        nfeatures = 0  # 최대 특징점 수, 0은 제한 없음
-        nOctaveLayers = 3  # octave 당 레이어 수 (기본값)
-        contrastThreshold = 0.04  # contrast threshold (기본값: 0.04, 낮출 수 있음)
-        edgeThreshold = 10  # edge threshold (기본값)
-        sigma = 1.6  # Gaussian 필터의 시그마 값 (기본값)
-
-        # SIFT 디텍터 생성
-        self.sift = cv2.SIFT_create(nfeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma)
+        # Initiate SIFT detector
+        self.sift = cv2.SIFT_create()
 
         dir_path = os.path.dirname(os.path.realpath(__file__))
         dir_path = dir_path.replace('turtlebot3_autorace_detect/nodes', 'turtlebot3_autorace_detect/')
