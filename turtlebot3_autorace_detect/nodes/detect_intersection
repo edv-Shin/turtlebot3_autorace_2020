@@ -61,47 +61,8 @@ class DetectIntersection():
    
     def cbIntersectionOrder(self, order):
         msg_pub_intersection_return = UInt8()
-     
         if order.data == self.StepOfIntersection.detect_direction.value:
             self.is_intersection_detected = True
-            rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=4
-                msg_moving.moving_value_angular=0
-                msg_moving.moving_value_linear=0.5
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-            
-            rospy.loginfo("go left")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=2
-                msg_moving.moving_value_angular=85
-                msg_moving.moving_value_linear=0.0
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-            rospy.loginfo("go straight")
-                msg_moving = MovingParam()
-                msg_moving.moving_type=4
-                msg_moving.moving_value_angular=0
-                msg_moving.moving_value_linear=0.3
-                self.pub_moving.publish(msg_moving)
-                while True:
-                    if self.is_moving_complete == True:
-                        break
-                self.is_moving_complete = False
-
-                rospy.sleep(1)
-
             while True:
                 if self.is_left_detected == True or self.is_right_detected == True:
                     break

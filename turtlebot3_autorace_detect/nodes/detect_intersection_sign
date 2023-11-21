@@ -137,7 +137,7 @@ class DetectSign():
 
         good_left = []
         for m,n in matches_left:
-            if m.distance < 0.7*n.distance:
+            if m.distance < 0.6*n.distance:
                 good_left.append(m)
         if len(good_left)>MIN_MATCH_COUNT_LEFT:
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good_left ]).reshape(-1,1,2)
@@ -161,7 +161,7 @@ class DetectSign():
 
         good_right = []
         for m,n in matches_right:
-            if m.distance < 0.7*n.distance:
+            if m.distance < 0.6*n.distance:
                 good_right.append(m)
         if len(good_right)>MIN_MATCH_COUNT_RIGHT:
             src_pts = np.float32([kp1[m.queryIdx].pt for m in good_right ]).reshape(-1,1,2)
