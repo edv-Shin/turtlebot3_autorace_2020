@@ -102,8 +102,8 @@ class DetectSign():
             cv_image_input = self.cvBridge.imgmsg_to_cv2(image_msg, "bgr8")
 
         MIN_MATCH_COUNT_INTERSECTION = 4 #9
-        MIN_MATCH_COUNT_LEFT = 6
-        MIN_MATCH_COUNT_RIGHT = 6
+        MIN_MATCH_COUNT_LEFT = 7
+        MIN_MATCH_COUNT_RIGHT = 7
         MIN_MSE_DECISION = 50000
 
         # find the keypoints and descriptors with SIFT
