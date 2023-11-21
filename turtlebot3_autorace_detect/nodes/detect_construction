@@ -49,14 +49,14 @@ class DetectContruction():
         msg_pub_construction_return = UInt8()
 
         rospy.loginfo("go straight")
-            msg_moving.moving_type= 4
-            msg_moving.moving_value_angular=0.0
-            msg_moving.moving_value_linear=0.25
-            self.pub_moving.publish(msg_moving)
-            while True:
-                if self.is_moving_complete == True:
-                    break
-            self.is_moving_complete = False
+        msg_moving.moving_type= 4
+        msg_moving.moving_value_angular=0.0
+        msg_moving.moving_value_linear=0.2
+        self.pub_moving.publish(msg_moving)
+        while True:
+            if self.is_moving_complete == True:
+                break
+        self.is_moving_complete = False
 
         if order.data == self.StepOfConstruction.find_obstacle.value:
             rospy.loginfo("find obstacle")
